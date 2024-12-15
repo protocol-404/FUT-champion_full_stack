@@ -2,7 +2,6 @@
 require_once '../config/database.php';
 require_once '../includes/functions.php';
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $player_id = (int)$_POST['player_id'];
     $first_name = sanitize($conn, $_POST['first_name']);
@@ -11,13 +10,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $team_id = (int)$_POST['team_id'];
     $position = sanitize($conn, $_POST['position']);
     $rating = (int)$_POST['rating'];
-     $pace = (int)$_POST['pace'];
+    $pace = (int)$_POST['pace'];
     $shooting = (int)$_POST['shooting'];
     $passing = (int)$_POST['passing'];
     $dribbling = (int)$_POST['dribbling'];
     $defending = (int)$_POST['defending'];
     $physical = (int)$_POST['physical'];
-
 
     $query = "UPDATE players SET first_name = ?, last_name = ?, nationality_id = ?, team_id = ?, position = ?, rating = ?, pace = ?, shooting = ?, passing = ?, dribbling = ?, defending = ?, physical = ? WHERE id = ?";
     $stmt = mysqli_prepare($conn, $query);
