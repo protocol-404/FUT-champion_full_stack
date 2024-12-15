@@ -4,25 +4,42 @@ require_once 'config/database.php';
 require_once 'includes/functions.php';
 require_once 'includes/language.php';
 
-// Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit();
 }
 
 
-// Logout logic
 if (isset($_GET['logout'])) {
     session_destroy();
     header('Location: login.php');
     exit();
 }
 
-// Fetch players for display
 $players = mysqli_query($conn, "SELECT p.*, n.name as nationality_name, t.name as team_name 
                                 FROM players p 
                                 JOIN nationalities n ON p.nationality_id = n.id 
-                                JOIN teams t ON p.team_id = t.id");
+                                JOIN teams t ON p.team_id = t.id"
+                        );
+
+$positions = [
+    'GK' => 'Goalkeeper',
+    'LB' => 'Left Back',
+    'CB' => 'Center Back',
+    'RB' => 'Right Back',
+    'LWB' => 'Left Wing Back',
+    'RWB' => 'Right Wing Back',
+    'CDM' => 'Central Defensive Midfielder',
+    'CM' => 'Central Midfielder',
+    'CAM' => 'Central Attacking Midfielder',
+    'LM' => 'Left Midfielder',
+    'RM' => 'Right Midfielder',
+    'LW' => 'Left Winger',
+    'RW' => 'Right Winger',
+    'CF' => 'Center Forward',
+    'ST' => 'Striker'
+];
+
 ?>
 
 <!DOCTYPE html>
@@ -105,9 +122,14 @@ $players = mysqli_query($conn, "SELECT p.*, n.name as nationality_name, t.name a
                                 </select>
                             </div>
                         </div>
-                        <div class="mb-4">
+                           <div class="mb-4">
                             <label for="position" class="block mb-2 text-sm font-medium text-gray-700">Position</label>
-                            <input type="text" class="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500" id="position" name="position" required>
+                            <select class="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500" id="position" name="position" required>
+                                <option value="">Select Position</option>
+                                <?php foreach ($positions as $key => $value): ?>
+                                    <option value="<?php echo $key; ?>"><?php echo $value; ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                             <div>
@@ -193,9 +215,14 @@ $players = mysqli_query($conn, "SELECT p.*, n.name as nationality_name, t.name a
                                         </select>
                                     </div>
                                 </div>
-                                <div class="mb-4">
+                                 <div class="mb-4">
                                     <label for="update_position" class="block mb-2 text-sm font-medium text-gray-700">Position</label>
-                                    <input type="text" class="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500" id="update_position" name="position" required>
+                                        <select class="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500" id="update_position" name="position" required>
+                                                <option value="">Select Position</option>
+                                                <?php foreach ($positions as $key => $value): ?>
+                                                        <option value="<?php echo $key; ?>"><?php echo $value; ?></option>
+                                                <?php endforeach; ?>
+                                        </select>
                                 </div>
                                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                                     <div>
@@ -278,7 +305,7 @@ $players = mysqli_query($conn, "SELECT p.*, n.name as nationality_name, t.name a
 
     <script src="assets/js/dashboard.js"></script>
 
-    <script>
+     <script>
         function deletePlayer(playerId) {
             Swal.fire({
                 title: 'Are you sure?',
@@ -360,8 +387,9 @@ $players = mysqli_query($conn, "SELECT p.*, n.name as nationality_name, t.name a
                 'success'
             ).then(() => {
                 document.getElementById('updatePlayerModal').style.display = 'none';
-                location.reload();
+                 location.reload();
             });
+
 
         } else {
                 Swal.fire(
