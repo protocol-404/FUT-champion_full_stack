@@ -50,6 +50,9 @@ while ($row = mysqli_fetch_assoc($result)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FUT Champions Dashboard</title>
+
+    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+
     <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <!-- Font Awesome -->
