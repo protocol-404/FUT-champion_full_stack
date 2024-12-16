@@ -49,14 +49,14 @@ $positions = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Players</title>
     <!-- Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https:
        <!-- SweetAlert2 -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https:
        <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https:
     <style>
         body {
-            background-color: #f8fafc; /* Light background for contrast */
+            background-color: #f8fafc;
         }
     </style>
 </head>
@@ -301,7 +301,7 @@ $positions = [
     </div>
 
     <!-- Tailwind CSS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
+    <script src="https:
 
     <script src="assets/js/dashboard.js"></script>
 
