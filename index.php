@@ -4,24 +4,24 @@ require_once 'config/database.php';
 require_once 'includes/functions.php';
 require_once 'includes/language.php';
 
-// Logout logic
+
 if (isset($_GET['logout'])) {
     session_destroy();
     header('Location: login.php');
     exit();
 }
 
-// Check if user is logged in
+
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit();
 }
 
-// Fetch total players and teams
+
 $totalPlayers = getTotalPlayers($conn);
 $totalTeams = getTotalTeams($conn);
 
-// Fetch nationality distribution
+
 $nationalityDistribution = [];
 $query = "SELECT n.name, COUNT(p.id) as count FROM nationalities n LEFT JOIN players p ON n.id = p.nationality_id GROUP BY n.id";
 $result = mysqli_query($conn, $query);
@@ -32,7 +32,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     ];
 }
 
-// Fetch team performance data
+
 $teamPerformance = [];
 $query = "SELECT t.name, AVG(p.rating) as avg_rating FROM teams t LEFT JOIN players p ON t.id = p.team_id GROUP BY t.id";
 $result = mysqli_query($conn, $query);
@@ -54,14 +54,14 @@ while ($row = mysqli_fetch_assoc($result)) {
     <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
 
     <!-- Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https:
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https:
     <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https:
      <style>
         body {
-            background-color: #f8fafc; /* Light background for contrast */
+            background-color: #f8fafc;
         }
     </style>
 </head>
@@ -135,13 +135,13 @@ while ($row = mysqli_fetch_assoc($result)) {
     </div>
 
     <script>
-        // Toggle language dropdown
+        
         document.getElementById('languageButton').addEventListener('click', function() {
             const dropdown = document.getElementById('languageDropdown');
             dropdown.classList.toggle('hidden');
         });
 
-        // Close dropdown if clicked outside
+        
         window.addEventListener('click', function(event) {
             const dropdown = document.getElementById('languageDropdown');
             if (!event.target.matches('#languageButton') && !dropdown.contains(event.target)) {
@@ -149,7 +149,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             }
         });
 
-        // Nationality Distribution Chart
+        
         const nationalityData = <?php echo json_encode($nationalityDistribution); ?>;
         const nationalityLabels = nationalityData.map(item => item.label);
         const nationalityCounts = nationalityData.map(item => item.count);
@@ -181,7 +181,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             }
         });
 
-        // Team Performance Chart
+        
         const teamData = <?php echo json_encode($teamPerformance); ?>;
         const teamLabels = teamData.map(item => item.label);
         const teamRatings = teamData.map(item => item.avg_rating);
