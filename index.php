@@ -1,9 +1,6 @@
 <?php
 session_start();
-require_once 'config/database.php';
-require_once 'includes/functions.php';
 require_once 'includes/language.php';
-
 
 if (isset($_GET['logout'])) {
     session_destroy();
@@ -11,36 +8,9 @@ if (isset($_GET['logout'])) {
     exit();
 }
 
-
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit();
-}
-
-
-$totalPlayers = getTotalPlayers($conn);
-$totalTeams = getTotalTeams($conn);
-
-
-$nationalityDistribution = [];
-$query = "SELECT n.name, COUNT(p.id) as count FROM nationalities n LEFT JOIN players p ON n.id = p.nationality_id GROUP BY n.id";
-$result = mysqli_query($conn, $query);
-while ($row = mysqli_fetch_assoc($result)) {
-    $nationalityDistribution[] = [
-        'label' => $row['name'],
-        'count' => (int)$row['count']
-    ];
-}
-
-
-$teamPerformance = [];
-$query = "SELECT t.name, AVG(p.rating) as avg_rating FROM teams t LEFT JOIN players p ON t.id = p.team_id GROUP BY t.id";
-$result = mysqli_query($conn, $query);
-while ($row = mysqli_fetch_assoc($result)) {
-    $teamPerformance[] = [
-        'label' => $row['name'],
-        'avg_rating' => (float)$row['avg_rating']
-    ];
 }
 ?>
 
@@ -51,14 +21,17 @@ while ($row = mysqli_fetch_assoc($result)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FUT Champions Dashboard</title>
 
-    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS -->
-    <link href="https:
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https:
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <!-- Chart.js -->
-    <script src="https:
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
      <style>
         body {
             background-color: #f8fafc;
@@ -100,7 +73,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                    <div class="bg-blue-600 text-white p-4 rounded-lg shadow w-full flex flex-col items-center">
                            <i class="fas fa-users text-5xl mb-2"></i>
                        <h5 class="font-bold"><?php echo $lang['total_players']; ?></h5>
-                       <h2 id="totalPlayers" class="text-3xl font-bold"><?php echo $totalPlayers; ?></h2>
+                       <h2 id="totalPlayers" class="text-3xl font-bold"></h2>
                    </div>
                </div>
 
@@ -109,7 +82,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <div class="bg-green-600 text-white p-4 rounded-lg shadow w-full  flex flex-col items-center">
                         <i class="fas fa-futbol text-5xl mb-2"></i>
                         <h5 class="font-bold"><?php echo $lang['total_teams']; ?></h5>
-                        <h2 id="totalTeams" class="text-3xl font-bold"><?php echo $totalTeams; ?></h2>
+                        <h2 id="totalTeams" class="text-3xl font-bold"></h2>
                     </div>
                 </div>
             </div>
@@ -134,87 +107,21 @@ while ($row = mysqli_fetch_assoc($result)) {
         </main>
     </div>
 
+    <!-- Include dashboard.js -->
+    <script src="assets/js/dashboard.js"></script>
+
     <script>
-        
+        // Add event listener for language button
         document.getElementById('languageButton').addEventListener('click', function() {
             const dropdown = document.getElementById('languageDropdown');
             dropdown.classList.toggle('hidden');
         });
 
-        
+        // Hide language dropdown on outside click
         window.addEventListener('click', function(event) {
             const dropdown = document.getElementById('languageDropdown');
             if (!event.target.matches('#languageButton') && !dropdown.contains(event.target)) {
                 dropdown.classList.add('hidden');
-            }
-        });
-
-        
-        const nationalityData = <?php echo json_encode($nationalityDistribution); ?>;
-        const nationalityLabels = nationalityData.map(item => item.label);
-        const nationalityCounts = nationalityData.map(item => item.count);
-
-        const nationalityCtx = document.getElementById('nationalityChart').getContext('2d');
-        const nationalityChart = new Chart(nationalityCtx, {
-            type: 'pie',
-            data: {
-                labels: nationalityLabels,
-                datasets: [{
-                    label: 'Nationality Distribution',
-                    data: nationalityCounts,
-                    backgroundColor: nationalityCounts.map(() => `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.6)`),
-                    borderColor: 'rgba(255, 255, 255, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    title: {
-                        display: true,
-                        text: 'Nationality Distribution'
-                    }
-                }
-            }
-        });
-
-        
-        const teamData = <?php echo json_encode($teamPerformance); ?>;
-        const teamLabels = teamData.map(item => item.label);
-        const teamRatings = teamData.map(item => item.avg_rating);
-
-        const performanceCtx = document.getElementById('performanceChart').getContext('2d');
-        const performanceChart = new Chart(performanceCtx, {
-            type: 'bar',
-            data: {
-                labels: teamLabels,
-                datasets: [{
-                    label: 'Average Team Rating',
-                    data: teamRatings,
-                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    title: {
-                        display: true,
-                        text: 'Team Performance'
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
             }
         });
     </script>
