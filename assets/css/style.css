@@ -1,5 +1,7 @@
 body {
     font-size: .875rem;
+    background-color: #1a202c; /* Dark background */
+    color: #edf2f7; /* Light text */
 }
 
 .sidebar {
@@ -9,7 +11,8 @@ body {
     left: 0;
     z-index: 100;
     padding: 48px 0 0;
-    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    box-shadow: inset -1px 0 0 rgba(255, 255, 255, .1); /* Light shadow */
+    background-color: #2d3748; /* Dark sidebar background */
 }
 
 .sidebar-sticky {
@@ -23,6 +26,8 @@ body {
 
 .card {
     transition: transform 0.2s;
+    background-color: #4a5568; /* Dark card background */
+    color: #edf2f7;
 }
 
 .card:hover {
@@ -41,20 +46,37 @@ body {
 }
 
 .table th {
-    background-color: #f8f9fa;
+    background-color: #4a5568; /* Dark table header background */
+    color: #edf2f7;
+}
+
+.table td {
+    color: #edf2f7;
 }
 
 .form-container {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    background: #fff;
+    background: #2d3748; /* Dark form background */
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Darker shadow */
+    color: #edf2f7;
+}
+
+.form-container label {
+    color: #edf2f7;
+}
+
+.form-container input,
+.form-container select {
+    background-color: #4a5568;
+    color: #edf2f7;
+    border: 1px solid #718096;
 }
 
 .navbar {
-    background-color: #333;
+    background-color: #2d3748;
     color: white;
     padding: 10px 0;
 }

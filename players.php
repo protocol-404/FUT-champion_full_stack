@@ -12,9 +12,6 @@ if (isset($_GET['logout'])) {
     exit();
 }
 
-// You don't need to query the database here anymore. The data will come from the API.
-// Remove the database query for players, nationalities, and teams.
-
 $positions = [
     'GK' => 'Goalkeeper',
     'LB' => 'Left Back',
