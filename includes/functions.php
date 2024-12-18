@@ -51,14 +51,14 @@ function getPlayersWithDetails($conn) {
 }
 
 function getTeams($conn) {
-    $query = "SELECT id, name FROM teams";
+    $query = "SELECT id, name, rating, flag_url FROM teams";
     $result = mysqli_query($conn, $query);
     $teams = mysqli_fetch_all($result, MYSQLI_ASSOC);
     return $teams;
 }
 
 function getNationalities($conn) {
-    $query = "SELECT id, name FROM nationalities";
+    $query = "SELECT id, name, code, flag_url FROM nationalities";
     $result = mysqli_query($conn, $query);
     $nationalities = mysqli_fetch_all($result, MYSQLI_ASSOC);
     return $nationalities;
