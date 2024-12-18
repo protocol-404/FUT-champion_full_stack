@@ -3,22 +3,18 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Set default language if not set
 if (!isset($_SESSION['lang'])) {
     $_SESSION['lang'] = 'en';
 }
 
-// Handle language change
 if (isset($_GET['lang'])) {
     $_SESSION['lang'] = $_GET['lang'];
 }
 
-// Include language file
 $langFile = dirname(__DIR__) . '/lang/' . $_SESSION['lang'] . '.php';
 if (file_exists($langFile)) {
     require_once $langFile;
 } else {
-    // Fallback to English if language file doesn't exist
     require_once dirname(__DIR__) . '/lang/en.php';
 }
 ?>
