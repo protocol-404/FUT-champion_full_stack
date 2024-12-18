@@ -83,7 +83,7 @@ $positions = [
                             <th class="px-4 py-2">Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="text-center">
                         <!-- Data will be loaded here by JavaScript -->
                     </tbody>
                 </table>
