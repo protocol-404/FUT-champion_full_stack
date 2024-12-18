@@ -300,3 +300,256 @@ function deletePlayer(playerId) {
         }
     });
 }
+
+
+function loadTeams() {
+    fetch('api/get_teams.php')
+        .then(response => response.json())
+        .then(teams => {
+            const teamsContainer = document.getElementById('teams-container');
+            teamsContainer.innerHTML = ''; 
+
+            teams.forEach(team => {
+                let card = document.createElement('div');
+                card.className = 'bg-white rounded-lg shadow-md p-4 flex flex-col items-center';
+                card.innerHTML = `
+                    ${team.flag_url ? `<img src="${team.flag_url}" alt="${team.name} Logo" class="w-20 h-20 object-contain mb-2">` : ''}
+                    <h2 class="text-xl font-semibold text-gray-800">${team.name}</h2>
+                    <p class="text-gray-600 mb-4">Rating: ${team.rating}</p>
+                    <div class="flex space-x-2">
+                        <button class="px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600" onclick='openUpdateTeamModal(${JSON.stringify(team)})'>Update</button>
+                        <button class="px-4 py-2 text-white bg-red-500 rounded-md hover:bg-red-600" onclick='deleteTeam(${team.id})'>Delete</button>
+                    </div>
+                `;
+                teamsContainer.appendChild(card);
+            });
+        })
+        .catch(error => console.error('Error loading teams:', error));
+}
+
+
+function addTeam() {
+    const formData = new FormData(document.getElementById('addTeamForm'));
+    fetch('api/add_team.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            Swal.fire('Success!', 'Team added successfully!', 'success')
+                .then(() => {
+                    hideModal('addTeamModal');
+                    loadTeams();
+                });
+        } else {
+            Swal.fire('Error!', 'Failed to add team: ' + (data.message || 'Unknown error'), 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        Swal.fire('Error!', 'An error occurred while trying to add the team.', 'error');
+    });
+}
+
+
+function openUpdateTeamModal(team) {
+    document.getElementById('update_team_id').value = team.id;
+    document.getElementById('update_team_name').value = team.name;
+    document.getElementById('update_team_rating').value = team.rating;
+    document.getElementById('update_team_flag_url').value = team.flag_url;
+
+    showModal('updateTeamModal');
+}
+
+
+function updateTeam() {
+    const formData = new FormData(document.getElementById('updateTeamForm'));
+
+    
+    formData.append('id', document.getElementById('update_team_id').value);
+
+    fetch('api/update_team.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            Swal.fire('Success!', 'Team updated successfully!', 'success')
+                .then(() => {
+                    hideModal('updateTeamModal');
+                    loadTeams();
+                });
+        } else {
+            Swal.fire('Error!', 'Failed to update team: ' + (data.message || 'Unknown error'), 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        Swal.fire('Error!', 'An error occurred while trying to update the team.', 'error');
+    });
+}
+
+function deleteTeam(teamId) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            fetch('api/delete_team.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'id=' + teamId
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    Swal.fire('Deleted!', 'Team deleted successfully!', 'success')
+                        .then(() => {
+                            loadTeams();
+                        });
+                } else {
+                    Swal.fire('Error!', 'Failed to delete team: ' + (data.message || 'Unknown error'), 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                Swal.fire('Error!', 'An error occurred while trying to delete the team.', 'error');
+            });
+        }
+    });
+}
+
+function loadNationalities() {
+    fetch('api/get_nationalities.php')
+        .then(response => response.json())
+        .then(nationalities => {
+            const nationalitiesContainer = document.getElementById('nationalities-container');
+            nationalitiesContainer.innerHTML = ''; 
+
+            nationalities.forEach(nationality => {
+                let card = document.createElement('div');
+                card.className = 'bg-white rounded-lg shadow-md p-4 flex flex-col items-center';
+                card.innerHTML = `
+                    ${nationality.flag_url ? `<img src="${nationality.flag_url}" alt="${nationality.name} Flag" class="w-20 h-20 object-contain mb-2">` : ''}
+                    <h2 class="text-xl font-semibold text-gray-800">${nationality.name}</h2>
+                    <p class="text-gray-600 mb-4">Code: ${nationality.code}</p>
+                    <div class="flex space-x-2">
+                        <button class="px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600" onclick='openUpdateNationalityModal(${JSON.stringify(nationality)})'>Update</button>
+                        <button class="px-4 py-2 text-white bg-red-500 rounded-md hover:bg-red-600" onclick='deleteNationality(${nationality.id})'>Delete</button>
+                    </div>
+                `;
+                nationalitiesContainer.appendChild(card);
+            });
+        })
+        .catch(error => console.error('Error loading nationalities:', error));
+}
+
+function addNationality() {
+    const formData = new FormData(document.getElementById('addNationalityForm'));
+    fetch('api/add_nationality.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            Swal.fire('Success!', 'Nationality added successfully!', 'success')
+                .then(() => {
+                    hideModal('addNationalityModal');
+                    loadNationalities();
+                });
+        } else {
+            Swal.fire('Error!', 'Failed to add nationality: ' + (data.message || 'Unknown error'), 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        Swal.fire('Error!', 'An error occurred while trying to add the nationality.', 'error');
+    });
+}
+
+
+function openUpdateNationalityModal(nationality) {
+    document.getElementById('update_nationality_id').value = nationality.id;
+    document.getElementById('update_nationality_name').value = nationality.name;
+    document.getElementById('update_nationality_code').value = nationality.code;
+    document.getElementById('update_nationality_flag_url').value = nationality.flag_url;
+
+    showModal('updateNationalityModal');
+}
+
+
+function updateNationality() {
+    const formData = new FormData(document.getElementById('updateNationalityForm'));
+
+    
+    formData.append('id', document.getElementById('update_nationality_id').value);
+
+    fetch('api/update_nationality.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            Swal.fire('Success!', 'Nationality updated successfully!', 'success')
+                .then(() => {
+                    hideModal('updateNationalityModal');
+                    loadNationalities();
+                });
+        } else {
+            Swal.fire('Error!', 'Failed to update nationality: ' + (data.message || 'Unknown error'), 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        Swal.fire('Error!', 'An error occurred while trying to update the nationality.', 'error');
+    });
+}
+
+
+function deleteNationality(nationalityId) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            fetch('api/delete_nationality.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'id=' + nationalityId
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    Swal.fire('Deleted!', 'Nationality deleted successfully!', 'success')
+                        .then(() => {
+                            loadNationalities();
+                        });
+                } else {
+                    Swal.fire('Error!', 'Failed to delete nationality: ' + (data.message || 'Unknown error'), 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                Swal.fire('Error!', 'An error occurred while trying to delete the nationality.', 'error');
+            });
+        }
+    });
+}
