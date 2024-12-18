@@ -2,6 +2,12 @@
 session_start();
 require_once 'includes/language.php';
 
+if (isset($_GET['logout'])) {
+    session_destroy();
+    header('Location: login.php');
+    exit();
+}
+
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit();
@@ -43,7 +49,7 @@ require_once 'includes/functions.php';
                             <ul class="py-1" role="menu">
                                 <li><a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" href="?lang=en">English</a></li>
                                 <li><a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" href="?lang=fr">Français</a></li>
-                                <li><a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" href="?lang=es">Español</a></li>
+                                <li><a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" href="?lang=es">Arabic</a></li>
                             </ul>
                         </div>
                     </div>
