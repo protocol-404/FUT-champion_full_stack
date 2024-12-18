@@ -5,13 +5,13 @@ require_once '../includes/functions.php';
 header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nationality_name = sanitize($conn, $_POST['name']);
-    $nationality_code = sanitize($conn, $_POST['code']);
-    $nationality_flag_url = sanitize($conn, $_POST['flag_url']);
+    $team_name = sanitize($conn, $_POST['name']);
+    $team_rating = (int)sanitize($conn, $_POST['rating']);
+    $team_flag_url = sanitize($conn, $_POST['flag_url']);
 
-    $query = "INSERT INTO nationalities (name, code, flag_url) VALUES (?, ?, ?)";
+    $query = "INSERT INTO teams (name, rating, flag_url) VALUES (?, ?, ?)";
     $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, 'sss', $nationality_name, $nationality_code, $nationality_flag_url);
+    mysqli_stmt_bind_param($stmt, 'sis', $team_name, $team_rating, $team_flag_url);
 
     $success = mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
