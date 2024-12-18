@@ -2,8 +2,6 @@
 require_once '../config/database.php';
 require_once '../includes/functions.php';
 
-header('Content-Type: application/json');
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nationality_name = sanitize($conn, $_POST['name']);
     $nationality_code = sanitize($conn, $_POST['code']);
