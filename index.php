@@ -21,16 +21,10 @@ if (!isset($_SESSION['user_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FUT Champions Dashboard</title>
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts, Font Awesome, Tailwind CSS,  Chart.js -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
      <style>
         body {
@@ -40,10 +34,10 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 <body>
     <div class="flex">
+
         <!-- Sidebar -->
         <?php include 'includes/sidebar.php'; ?>
 
-        <!-- Main content -->
         <main class="flex-1 p-6">
             <div class="flex justify-between items-center mb-6">
                 <h1 class="text-2xl font-bold text-gray-800"><?php echo $lang['dashboard']; ?></h1>
@@ -61,7 +55,6 @@ if (!isset($_SESSION['user_id'])) {
                             </ul>
                         </div>
                     </div>
-                    <!-- Logout Button -->
                     <a href="?logout=true" class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700">Logout</a>
                 </div>
             </div>
@@ -107,17 +100,14 @@ if (!isset($_SESSION['user_id'])) {
         </main>
     </div>
 
-    <!-- Include dashboard.js -->
     <script src="assets/js/dashboard.js"></script>
 
     <script>
-        // Add event listener for language button
         document.getElementById('languageButton').addEventListener('click', function() {
             const dropdown = document.getElementById('languageDropdown');
             dropdown.classList.toggle('hidden');
         });
 
-        // Hide language dropdown on outside click
         window.addEventListener('click', function(event) {
             const dropdown = document.getElementById('languageDropdown');
             if (!event.target.matches('#languageButton') && !dropdown.contains(event.target)) {
