@@ -147,6 +147,9 @@ function loadPlayers() {
                 let row = document.createElement('tr');
                 row.className = 'hover:bg-gray-100';
                 row.innerHTML = `
+                    <td class="px-4 py-2 flex justify-center items-center">
+                    ${player.flag_url ? `<img src="${player.flag_url}" alt="${player.name} Logo" class="w-14 h-14 object-contain mb-2">` : ''}
+                    </td>
                     <td class='px-4 py-2'>${player.first_name}</td>
                     <td class='px-4 py-2'>${player.last_name}</td>
                     <td class='px-4 py-2'>${player.nationality_name}</td>
@@ -228,6 +231,7 @@ function openUpdateModal(player) {
     document.getElementById('player_id').value = player.id;
     document.getElementById('update_first_name').value = player.first_name;
     document.getElementById('update_last_name').value = player.last_name;
+    document.getElementById('update_flag_url').value = player.flag_url;
     document.getElementById('update_nationality_id').value = player.nationality_id;
     document.getElementById('update_team_id').value = player.team_id;
     document.getElementById('update_position').value = player.position;

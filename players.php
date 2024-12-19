@@ -74,6 +74,7 @@ $positions = [
                 <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
                     <thead>
                         <tr class="bg-blue-600 text-white">
+                            <th class="px-4 py-2">Player photo</th>
                             <th class="px-4 py-2">First Name</th>
                             <th class="px-4 py-2">Last Name</th>
                             <th class="px-4 py-2">Nationality</th>

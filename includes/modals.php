@@ -18,6 +18,12 @@
                         <input type="text" class="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500" id="last_name" name="last_name" required>
                     </div>
                 </div>
+                <div class="grid grid-cols-1 gap-4">
+                    <div>
+                        <label for="flag_url" class="block mb-2 text-sm font-medium text-gray-700">Player Photo (URL)</label>
+                        <input type="text" class="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500" id="flag_url" name="flag_url" required>
+                    </div>
+                </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div>
                         <label for="nationality_id" class="block mb-2 text-sm font-medium text-gray-700">Nationality</label>
@@ -98,6 +104,12 @@
                     <div>
                         <label for="update_last_name" class="block mb-2 text-sm font-medium text-gray-700">Last Name</label>
                         <input type="text" class="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500" id="update_last_name" name="last_name" required>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 gap-4">
+                    <div>
+                        <label for="update_flag_url" class="block mb-2 text-sm font-medium text-gray-700">Player Photo (URL)</label>
+                        <input type="text" class="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500" id="update_flag_url" name="flag_url" required>
                     </div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
