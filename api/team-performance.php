@@ -1,7 +1,6 @@
 <?php
-header('Content-Type: application/json');
-require_once '../config/database.php';
-require_once '../includes/functions.php';
+require_once ($_SERVER['DOCUMENT_ROOT'].'/config/database.php');
+require_once ($_SERVER['DOCUMENT_ROOT'].'/includes/functions.php');
 
 try {
     $data = getTeamPerformance($conn);

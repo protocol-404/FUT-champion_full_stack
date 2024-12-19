@@ -1,6 +1,6 @@
 <?php
-require_once '../config/database.php';
-require_once '../includes/functions.php';
+require_once ($_SERVER['DOCUMENT_ROOT'].'/config/database.php');
+require_once ($_SERVER['DOCUMENT_ROOT'].'/includes/functions.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nationality_id = sanitize($conn, $_POST['id']);

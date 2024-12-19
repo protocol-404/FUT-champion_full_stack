@@ -1,6 +1,5 @@
 <?php
-header('Content-Type: application/json');
-require_once '../config/database.php';
+require_once ($_SERVER['DOCUMENT_ROOT'].'/config/database.php');
 
 // prevent SQL injection by using prepared statements
 function getDashboardStats($conn) {

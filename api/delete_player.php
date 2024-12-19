@@ -1,5 +1,5 @@
 <?php
-require_once '../config/database.php';
+require_once ($_SERVER['DOCUMENT_ROOT'].'/config/database.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
     $player_id = (int)$_GET['id'];

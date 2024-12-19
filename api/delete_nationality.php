@@ -1,5 +1,5 @@
 <?php
-require_once '../config/database.php';
+require_once ($_SERVER['DOCUMENT_ROOT'].'/config/database.php');
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
