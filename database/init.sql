@@ -40,7 +40,8 @@ CREATE TABLE IF NOT EXISTS players (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (nationality_id) REFERENCES nationalities(id),
-    FOREIGN KEY (team_id) REFERENCES teams(id)
+    FOREIGN KEY (team_id) REFERENCES teams(id),
+    flag_url VARCHAR(255) DEFAULT NULL
 );
 
 -- Create users table for admin authentication
