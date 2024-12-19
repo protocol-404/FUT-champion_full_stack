@@ -62,7 +62,7 @@ require_once 'includes/functions.php';
                 <button onclick="showModal('addNationalityModal')" class="px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700">Add Nationality</button>
             </div>
 
-            <?php include 'includes/modals.php'; ?>
+            <?php include 'includes/nationality_modals.php'; ?>
 
             <div id="nationalities-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 <!-- Nationality cards will be loaded here -->

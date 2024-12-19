@@ -62,7 +62,7 @@ require_once 'includes/functions.php';
                 <button onclick="showModal('addTeamModal')" class="px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700">Add Team</button>
             </div>
 
-            <?php include 'includes/modals.php'; ?>
+            <?php include 'includes/team_modals.php'; ?>
 
             <div id="teams-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 <!-- Team cards will be loaded here -->
