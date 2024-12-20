@@ -147,21 +147,18 @@ function loadPlayers() {
                 let row = document.createElement('tr');
                 row.className = 'hover:bg-gray-100';
                 row.innerHTML = `
-                <tr class="table-row-hover border-b">
-                    <td class="px-6 py-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden">
-                                ${player.flag_url ? 
-                                    `<img src="${player.flag_url}" alt="${player.name}" class="w-full h-full object-cover">` :
-                                    `<i class="fas fa-user text-gray-400 text-xl"></i>`
-                                }
+                    <tr class="table-row-hover border-b align-center text-center">
+                        <td class="px-6 py-4 text-center">
+                            <div class="flex items-center justify-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden">
+                                    ${player.flag_url ? 
+                                        `<img src="${player.flag_url}" alt="${player.name}" class="w-full h-full object-cover">` :
+                                        `<i class="fas fa-user text-gray-400 text-xl"></i>`
+                                    }
+                                </div>
                             </div>
-                            <div class="flex flex-col">
-                                <span class="font-medium">${player.first_name} ${player.last_name}</span>
-                                <span class="text-sm text-gray-500">${player.team_name}</span>
-                            </div>
-                        </div>
-                    </td>
+                        </td>
+                    </tr>
                     <td class="px-6 py-4 text-center">${player.first_name}</td>
                     <td class="px-6 py-4 text-center">${player.last_name}</td>
                     <td class="px-6 py-4 text-center">${player.nationality_name}</td>
