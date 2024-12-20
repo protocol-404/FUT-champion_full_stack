@@ -54,7 +54,6 @@ if (!isset($_SESSION['user_id'])) {
     }
     
 
-    /* Enhance logo visibility */
     .stats-card img {
         filter: drop-shadow(0 0 8px rgba(255,255,255,0.3));
         transition: all 0.3s ease;

@@ -81,7 +81,10 @@ $positions = [
             </div>
 
             <div class="mt-4 mb-6">
-                <button class="px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700" data-modal-toggle="addPlayerModal">Add Player</button>
+                <button class="px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700" data-modal-toggle="addPlayerModal">
+                <i class="fas fa-plus mr-2"></i>
+                    Add Player
+                </button>
             </div>
 
             <?php include 'includes/modals.php'; ?>
