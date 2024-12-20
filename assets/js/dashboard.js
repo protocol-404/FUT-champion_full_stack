@@ -147,19 +147,48 @@ function loadPlayers() {
                 let row = document.createElement('tr');
                 row.className = 'hover:bg-gray-100';
                 row.innerHTML = `
-                    <td class="px-4 py-2 flex justify-center items-center">
-                    ${player.flag_url ? `<img src="${player.flag_url}" alt="${player.name} Logo" class="w-14 h-14 object-contain mb-2">` : ''}
+                <tr class="table-row-hover border-b">
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden">
+                                ${player.flag_url ? 
+                                    `<img src="${player.flag_url}" alt="${player.name}" class="w-full h-full object-cover">` :
+                                    `<i class="fas fa-user text-gray-400 text-xl"></i>`
+                                }
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="font-medium">${player.first_name} ${player.last_name}</span>
+                                <span class="text-sm text-gray-500">${player.team_name}</span>
+                            </div>
+                        </div>
                     </td>
-                    <td class='px-4 py-2'>${player.first_name}</td>
-                    <td class='px-4 py-2'>${player.last_name}</td>
-                    <td class='px-4 py-2'>${player.nationality_name}</td>
-                    <td class='px-4 py-2'>${player.team_name}</td>
-                    <td class='px-4 py-2'>${player.position}</td>
-                    <td class='px-4 py-2'>${player.rating}</td>
-                    <td class='px-4 py-2'>
-                        <button class='px-2 py-1 text-white bg-green-600 rounded-md hover:bg-green-700' onclick='openUpdateModal(${JSON.stringify(player)})'>Update</button>
-                        <button class='px-2 py-1 text-white bg-red-600 rounded-md hover:bg-red-700' onclick='deletePlayer(${player.id})'>Delete</button>
+                    <td class="px-6 py-4 text-center">${player.first_name}</td>
+                    <td class="px-6 py-4 text-center">${player.last_name}</td>
+                    <td class="px-6 py-4 text-center">${player.nationality_name}</td>
+                    <td class="px-6 py-4 text-center">${player.team_name}</td>
+                    <td class="px-6 py-4 text-center">
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+                            ${player.position}
+                        </span>
                     </td>
+                    <td class="px-6 py-4 text-center">
+                        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full font-medium">
+                            ${player.rating}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                        <div class="flex items-center justify-center gap-2">
+                            <button onclick='openUpdateModal(${JSON.stringify(player)})' 
+                                    class="p-2 text-blue-600 hover:bg-blue-50 rounded-full transition-colors">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button onclick='deletePlayer(${player.id})'
+                                    class="p-2 text-red-600 hover:bg-red-50 rounded-full transition-colors">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
                 `;
                 tbody.appendChild(row);
             });
