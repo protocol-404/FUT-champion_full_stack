@@ -1,19 +1,22 @@
 <?php
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', 'root');
-define('DB_NAME', 'fut_champions');
+require __DIR__ . '/../vendor/autoload.php';
 
-$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS);
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv->load();
+
+$conn = mysqli_connect(
+    $_ENV['DB_HOST'],
+    $_ENV['DB_USER'],
+    $_ENV['DB_PASS']
+);
 
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "CREATE DATABASE IF NOT EXISTS " . DB_NAME;
+$sql = "CREATE DATABASE IF NOT EXISTS " . $_ENV['DB_NAME'];
 if (mysqli_query($conn, $sql)) {
-
-    mysqli_select_db($conn, DB_NAME);
+    mysqli_select_db($conn, $_ENV['DB_NAME']);
 } else {
     die("Error creating database: " . mysqli_error($conn));
 }
