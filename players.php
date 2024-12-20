@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'includes/language.php';
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
@@ -50,15 +51,32 @@ $positions = [
 </head>
 <body>
     <div class="flex">
-        <!-- Sidebar -->
         <?php include 'includes/sidebar.php'; ?>
 
-        <!-- Main content -->
         <main class="flex-1 p-6">
-            <div class="flex justify-between items-center mb-6">
-                <h1 class="text-2xl font-bold text-gray-800">Manage Players</h1>
+            <div class="flex justify-between items-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-800 tracking-tight"><?php echo $lang['players']; ?></h1>
+
                 <div class="flex items-center space-x-4">
-                    <a href="?logout=true" class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700">Logout</a>
+                    <!-- Language selector -->
+                    <div class="language-selector">
+                        <button id="languageButton" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 shadow-sm">
+                            <i class="fas fa-globe mr-2"></i>
+                            <?php echo $lang['language']; ?>
+                        </button>
+                        <div id="languageDropdown" class="language-dropdown absolute right-0 hidden mt-2 w-48 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+                            <ul class="py-2" role="menu">
+                                <li><a class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600" href="?lang=en">English</a></li>
+                                <li><a class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600" href="?lang=fr">Français</a></li>
+                                <li><a class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600" href="?lang=ar">العربية</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <a href="?logout=true" class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600 transition-colors">
+                        <i class="fas fa-sign-out-alt mr-2"></i>
+                        Logout
+                    </a>
                 </div>
             </div>
 
@@ -66,12 +84,10 @@ $positions = [
                 <button class="px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700" data-modal-toggle="addPlayerModal">Add Player</button>
             </div>
 
-            <!-- Modals (Add and Update) -->
             <?php include 'includes/modals.php'; ?>
 
-            <!-- Player Table -->
             <div class="overflow-x-auto">
-                <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+                <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md text-center">
                     <thead>
                         <tr class="bg-blue-600 text-white">
                             <th class="px-4 py-2">Player photo</th>

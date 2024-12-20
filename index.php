@@ -92,6 +92,7 @@ if (!isset($_SESSION['user_id'])) {
                             </ul>
                         </div>
                     </div>
+
                     <a href="?logout=true" class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600 transition-colors">
                         <i class="fas fa-sign-out-alt mr-2"></i>
                         Logout
