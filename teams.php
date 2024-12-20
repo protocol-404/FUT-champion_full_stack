@@ -24,46 +24,7 @@ if (!isset($_SESSION['user_id'])) {
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.0/dist/sweetalert2.all.min.js"></script>
-    <style>
-        body {
-            background-color: #f8fafc;
-            background-image: radial-gradient(#e2e8f0 0.5px, transparent 0.5px);
-            background-size: 10px 10px;
-        }
-
-        .stats-card {
-            transition: all 0.3s ease;
-        }
-
-        .stats-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .language-selector {
-            position: relative;
-            z-index: 50;
-        }
-
-        .language-dropdown {
-            backdrop-filter: blur(8px);
-            background-color: rgba(255, 255, 255, 0.95);
-        }
-
-        .gradient-blue {
-        background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
-    }
-    
-
-    .stats-card img {
-        filter: drop-shadow(0 0 8px rgba(255,255,255,0.3));
-        transition: all 0.3s ease;
-    }
-
-    .stats-card:hover img {
-        filter: drop-shadow(0 0 12px rgba(255,255,255,0.4));
-        transform: scale(1.05);
-    }
-    </style>
+    <link rel="stylesheet" href="assets/css/team.css">
 </head>
 <body class="font-sans">
     <div class="flex min-h-screen">
