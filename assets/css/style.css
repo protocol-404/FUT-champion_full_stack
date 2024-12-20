@@ -1,97 +1,40 @@
 body {
-    font-size: .875rem;
-    background-color: #1a202c; /* Dark background */
-    color: #edf2f7; /* Light text */
+    background-color: #f8fafc;
+    background-image: radial-gradient(#e2e8f0 0.5px, transparent 0.5px);
+    background-size: 10px 10px;
 }
 
-.sidebar {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 100;
-    padding: 48px 0 0;
-    box-shadow: inset -1px 0 0 rgba(255, 255, 255, .1); /* Light shadow */
-    background-color: #2d3748; /* Dark sidebar background */
+.stats-card {
+    transition: all 0.3s ease;
 }
 
-.sidebar-sticky {
-    position: relative;
-    top: 0;
-    height: calc(100vh - 48px);
-    padding-top: .5rem;
-    overflow-x: hidden;
-    overflow-y: auto;
-}
-
-.card {
-    transition: transform 0.2s;
-    background-color: #4a5568; /* Dark card background */
-    color: #edf2f7;
-}
-
-.card:hover {
+.stats-card:hover {
     transform: translateY(-5px);
 }
 
+.gradient-blue {
+    background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+}
+
+.gradient-green {
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+}
+
 .chart-container {
+    transition: all 0.3s ease;
+}
+
+.chart-container:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.language-selector {
     position: relative;
-    margin: auto;
-    height: 300px;
-    width: 100%;
+    z-index: 50;
 }
 
-.table-responsive {
-    margin: 15px 0;
+.language-dropdown {
+    backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.95);
 }
 
-.table th {
-    background-color: #4a5568; /* Dark table header background */
-    color: #edf2f7;
-}
-
-.table td {
-    color: #edf2f7;
-}
-
-.form-container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #2d3748; /* Dark form background */
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Darker shadow */
-    color: #edf2f7;
-}
-
-.form-container label {
-    color: #edf2f7;
-}
-
-.form-container input,
-.form-container select {
-    background-color: #4a5568;
-    color: #edf2f7;
-    border: 1px solid #718096;
-}
-
-.navbar {
-    background-color: #2d3748;
-    color: white;
-    padding: 10px 0;
-}
-
-.navbar .navbar-nav {
-    list-style: none;
-    padding: 0;
-}
-
-.navbar .navbar-nav li {
-    display: inline;
-    margin: 0 15px;
-}
-
-.navbar .navbar-nav a {
-    color: white;
-    text-decoration: none;
-}
