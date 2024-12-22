@@ -23,7 +23,7 @@ A dynamic admin dashboard for managing FUT Champions Ultimate Team data, built w
 
 1. Clone the repository to your web server directory:
    ```bash
-   git clone <repository-url> fut_champions_dashboard
+   git clone git@github.com:protocol-404/FUT-champion_full_stack.git fut_champions_dashboard
    ```
 
 2. Import the database structure:
