@@ -2,3 +2,4 @@ text
 .env
 vendor/
 .vscode/settings.json
+players.json

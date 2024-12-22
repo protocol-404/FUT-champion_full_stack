@@ -55,8 +55,6 @@ A dynamic admin dashboard for managing FUT Champions Ultimate Team data, built w
 ## Security Considerations
 
 - All user inputs are sanitized to prevent SQL injection
-- Passwords are hashed using PHP's password_hash()
-- CSRF protection is implemented for forms
 - XSS prevention through proper output escaping
 - Prepared statements for database queries
 

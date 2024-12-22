@@ -1,18 +1,18 @@
 -- Insert sample nationalities
-INSERT INTO nationalities (name, code) VALUES
-('England', 'EN'),
-('France', 'FR'),
-('Spain', 'ES'),
-('Germany', 'DE'),
-('Italy', 'IT');
+INSERT INTO nationalities (name, code, flag_url) VALUES
+('England', 'EN', 'path/to/england_flag.png'),
+('France', 'FR', 'path/to/france_flag.png'),
+('Spain', 'ES', 'path/to/spain_flag.png'),
+('Germany', 'DE', 'path/to/germany_flag.png'),
+('Italy', 'IT', 'path/to/italy_flag.png');
 
 -- Insert sample teams
-INSERT INTO teams (name, rating) VALUES
-('Manchester United', 85),
-('Paris Saint-Germain', 87),
-('Real Madrid', 88),
-('Bayern Munich', 86),
-('Juventus', 84);
+INSERT INTO teams (name, rating, flag_url) VALUES
+('Manchester United', 85, 'path/to/manchester_united_flag.png'),
+('Paris Saint-Germain', 87, 'path/to/psg_flag.png'),
+('Real Madrid', 88, 'path/to/real_madrid_flag.png'),
+('Bayern Munich', 86, 'path/to/bayern_munich_flag.png'),
+('Juventus', 84, 'path/to/juventus_flag.png');
 
 -- Insert sample players
 INSERT INTO players (first_name, last_name, nationality_id, team_id, position, rating, pace, shooting, passing, dribbling, defending, physical) VALUES

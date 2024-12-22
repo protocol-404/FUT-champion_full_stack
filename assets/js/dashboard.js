@@ -104,26 +104,26 @@ function generateColors(count) {
 }
 
 
-function createEntity(type, data) {
-    return fetch(`api/${type}.php`, {
+async function createEntity(type, data) {
+    const response = await fetch(`api/${type}.php`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
-    })
-    .then(response => response.json());
+    });
+    return response.json();
 }
 
-function updateEntity(type, id, data) {
-    return fetch(`api/${type}.php?id=${id}`, {
+async function updateEntity(type, id, data) {
+    const response = await fetch(`api/${type}.php?id=${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
-    })
-    .then(response => response.json());
+    });
+    return response.json();
 }
 
 function deleteEntity(type, id) {
