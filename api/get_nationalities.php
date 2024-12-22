@@ -2,6 +2,8 @@
 require_once ($_SERVER['DOCUMENT_ROOT'].'/config/database.php');
 require_once ($_SERVER['DOCUMENT_ROOT'].'/includes/functions.php');
 
+header('Content-Type: application/json');
+
 try {
     $nationalities = getNationalities($conn);
     echo json_encode($nationalities);

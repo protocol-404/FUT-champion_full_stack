@@ -1,6 +1,6 @@
 -- Create database
-CREATE DATABASE IF NOT EXISTS fut_champions CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE fut_champions;
+CREATE DATABASE IF NOT EXISTS ezyro_37955800_fut_champions CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE ezyro_37955800_fut_champions;
 
 -- Create nationalities table
 CREATE TABLE IF NOT EXISTS nationalities (

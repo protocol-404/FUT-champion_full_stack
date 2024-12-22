@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="text-center">
                 <h2 class="text-3xl font-bold mb-4 text-gray-800">Build Your Team</h2>
                 <p class="text-gray-600 mb-6 text-lg">Start creating your ultimate FUT team now!</p>
-                <a href="team_build.php" class="inline-block px-8 py-3 text-white bg-green-500 rounded-lg hover:bg-green-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                <a href="http://127.0.0.1:5500/index.html" class="inline-block px-8 py-3 text-white bg-green-500 rounded-lg hover:bg-green-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                     Build Team
                 </a>
             </div>

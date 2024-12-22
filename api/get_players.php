@@ -1,6 +1,8 @@
 <?php
-require_once ($_SERVER['DOCUMENT_ROOT'].'/config/database.php');
-require_once ($_SERVER['DOCUMENT_ROOT'].'/includes/functions.php');
+require_once '../config/database.php';
+require_once '../includes/functions.php';
+
+header('Content-Type: application/json');
 
 try {
     $players = getPlayersWithDetails($conn);
