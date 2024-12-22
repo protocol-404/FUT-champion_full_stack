@@ -85,3 +85,4 @@ fut_champions_dashboard/
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+The full license text is available in the LICENSE file.
