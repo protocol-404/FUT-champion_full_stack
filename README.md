@@ -7,7 +7,7 @@ A dynamic admin dashboard for managing FUT Champions Ultimate Team data, built w
 - Complete CRUD operations for players, teams, and nationalities
 - Interactive charts using Chart.js
 - Multi-language support (English, French, Spanish)
-- Responsive design using Bootstrap
+- Responsive design using Tailwind CSS
 - Secure authentication system
 - AJAX-powered dynamic updates
 - Data visualization of key statistics
